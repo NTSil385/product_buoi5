@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:custom="http://www.w3.org/1999/xhtml"
+      xmlns:th="http:/www.thymeleaf.org">
+<head>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstra
+p.min.css"
+        integrity="sha384-
+MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+  <meta charset="UTF-8">
+  <title>List product</title>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+  <a th:href="@{products/create}" class="btn btn-primary">Create New
+    Product</a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${listproduct}">
+      <th scope="row" th:text="${product.id}"></th>
+      <td th:text="${product.name}"></td>
+      <td th:text="${product.image}"></td>
+      <td th:text="${product.price}"></td>
+      <td><a th:href="@{/products/edit/{id}(id=${product.id})}"
+             custom:linkMethod="post" class="btn btn-secondary">Edit</a> <a
+              th:href="@{/products/delete/{id}(id=${product.id})}"
+              custom:linkMethod="post" class="btn btn-danger">Delete</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

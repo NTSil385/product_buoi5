@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http:/www.thymeleaf.org"
+      layout:decorate="_layout">
+
+<head>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstra
+p.min.css"
+          integrity="sha384-
+MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+    <meta charset="UTF-8">
+    <title>Create product</title>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <form th:action="@{/products/create}" th:object="${product}"
+          method="post" class="form" >
+        <div class="form-group">
+            <label for="name">Name</label> <input class="form-control"
+                                                  type="text" th:field="*{name}" id="name" placeholder="Product Name">
+            <!--/*@thymesVar id="#fields" type="aj"*/-->
+            <div class="alert alert-warning"
+                 th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+        <div class="form-group">
+            <label for="image">Image:</label> <input class="form-control"
+                                                     type="text" th:field="*{image}" id="image" placeholder="image" >
+            <div class="alert alert-warning"
+                 th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label> <input class="form-control"
+                                                     type="number" th:field="*{price}" id="price" placeholder="price">
+            <div class="alert alert-warning"
+                 th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+        </div>
+        <input type="submit" class="btn btn-success" value="Add Product">
+    </form>
+</div>
+</body>
+</html>
